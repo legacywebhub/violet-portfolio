@@ -7,7 +7,7 @@ class WebsiteSetting(models.Model):
     title = models.CharField(max_length=40, blank=False)
     meta_keywords = models.CharField(max_length=200, blank=False)
     meta_description = models.TextField(max_length=160, blank=False)
-    logo = models.ImageField(upload_to="images/setting", blank=True)
+    logo = models.ImageField(upload_to="violetportfolio/images/setting", blank=True)
     header = models.CharField(max_length=50, blank=True, null=True)
     google_analytics = models.TextField(max_length=1500, blank=True) 
 
@@ -24,11 +24,11 @@ class Info(models.Model):
     age = models.PositiveIntegerField(blank=True)
     location = models.CharField(max_length=30, blank=False)
     profession = models.CharField(max_length=30,blank=False)
-    my_image = models.ImageField(upload_to="images/about", blank=True)
+    my_image = models.ImageField(upload_to="violetportfolio/images/about", blank=True)
     about_me = models.TextField(max_length=500, blank=False)
     about_services = models.TextField(max_length=2000, blank=True)
     about_team = models.TextField(max_length=1000, blank=True)
-    CV = models.FileField(upload_to="documents", blank=True, storage=RawMediaCloudinaryStorage())
+    CV = models.FileField(upload_to="violetportfolio/documents", blank=True, storage=RawMediaCloudinaryStorage())
     address = models.CharField(max_length=150, blank=False)
     email_1 = models.EmailField(blank=False)
     email_2 = models.EmailField(blank=True)
@@ -60,7 +60,7 @@ class Skill(models.Model):
 
 class Service(models.Model):
     service = models.CharField(max_length=50, blank=False)
-    image = models.ImageField(upload_to="images",blank=True)
+    image = models.ImageField(upload_to="violetportfolio/images/services",blank=True)
     detail = models.TextField(max_length=500, blank=False)
     
     def __str__(self):
@@ -68,7 +68,7 @@ class Service(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=50, blank=False)
-    image = models.ImageField(upload_to="images/team", blank=False)
+    image = models.ImageField(upload_to="violetportfolio/images/team", blank=False)
     role = models.CharField(max_length=50, blank=False)
     skill1 = models.CharField(max_length=25, blank=True)
     skill2 = models.CharField(max_length=25, blank=True)
@@ -90,13 +90,13 @@ class Portfolio(models.Model):
     category = models.CharField(max_length=25, choices=categories, default='category-a')
     service = models.CharField(max_length=25, blank=False)
     author = models.CharField(max_length=25, blank=True)
-    image = models.ImageField(upload_to="images/portfolio", blank=False)
+    image = models.ImageField(upload_to="violetportfolio/images/portfolio", blank=False)
     detail = models.TextField(max_length=1500, blank=True)
 
 
 class Testimonial(models.Model):
     client_name = models.CharField(max_length=100, blank=False, null=False)
-    client_image = models.ImageField(upload_to='images/testimonials', blank=False)
+    client_image = models.ImageField(upload_to='violetportfolio/images/testimonials', blank=False)
     service = models.CharField(max_length=50, blank=False)
     testimony = models.CharField(max_length=3000, blank=False, null=False)
     company = models.CharField(max_length=100, blank=True, null=True)
@@ -111,7 +111,8 @@ class Content(models.Model):
     last_modified = models.DateField(auto_now=True)
     category = models.CharField(max_length=50, blank=True, null=True)
     title = models.CharField(max_length=150, blank=False)
-    image = models.ImageField(upload_to='images/contents', blank=True)
+    image = models.ImageField(upload_to='violetportfolio/images/contents', blank=True)
+    image_url = models.CharField(max_length=2500, blank=True, null=True)
     content = RichTextField(max_length=20000, blank=False, null=False)
     quote = models.CharField(max_length=250, blank=True, null=True)
     ad = models.TextField(max_length=2000, blank=True, null=True)
