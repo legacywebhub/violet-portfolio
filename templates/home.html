@@ -1,0 +1,527 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{setting.title}} | {{info.first_name}} {{info.last_name}}</title>
+  <meta name="keywords" content="{{setting.meta_keywords}}">
+  <meta name="description" content="{{setting.description}}">
+
+  <link rel="stylesheet" href="{% static 'assets/fonts/flat-icon/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <style>
+    .message {
+      color: #fff;
+    }
+    .team-image {
+      height: 300px;
+    }
+    .testimonial-image {
+      border-radius: 50%;
+    }
+    #contact {
+      min-height: 150vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #contact-form button {
+      border-radius: 0px;
+      background-color: rgba(108,76,206, .9);
+    }
+    .form-group input {
+      border-radius: 0px;
+      border-bottom: 5px;
+    }
+    .form-group textarea {
+      display: block;
+      width: 100%;
+      border-radius: 0px;
+      border: #e0e0e0 1.5px;
+      border-style: groove;
+    }
+  </style>
+</head>
+<body onunload="">
+<div id="content-wrapper">
+  <header class="header header--bg">
+    <div class="container">
+      <nav class="navbar">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </button>
+          {% if setting.logo %}
+          <img src="{{setting.logo.url}}" alt="Logo" width="120">
+          {% else %}
+          <a class="navbar-brand" href="#" style="text-transform: capitalize;">{{info.first_name}}</a>
+          {% endif %}
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#skill">SKILLS</a></li>
+            <li><a href="#services">SERVICES</a></li>  
+            <li><a href="#portfolio">PORTFOLIO</a></li> 
+            <li><a href="#team">TEAM</a></li> 
+            <li><a href="#contact">CONTACT</a></li> 
+          </ul>
+        </div>
+      </nav>
+      <div class="header__content text-center">
+        <span class="header__content__block">HELLO</span>
+        <h1 class="header__content__title">I'M <span style="text-transform: uppercase;">{{info.first_name}} {{info.last_name}}</span></h1>
+        <ul class="header__content__sub-title">
+          {% for skill in skills %}
+          <li>{{skill.skill}} <span class="padding">&#45;</span></li>
+          {% endfor %}
+        </ul>
+        {% if messages %}
+        {% for message in messages %}
+        <br><h2 class="message">{{message}}</h2>
+        {% endfor %}
+        {% else %}
+        <a class="header__button" href="#contact">HAVE PROJECT? LET'S TALK</a>
+        {% endif %}
+      </div>
+      <div class="social-icon pull-right">
+        <ul style="color: #fff;">
+          {% if info.whatsapp %}
+          <li><a href="{{info.whatsapp}}" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.facebook %}
+          <li><a href="{{info.facebook}}" target="_blank"><i class="fab fa-facebook fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.twitter %}
+          <li><a href="{{info.twitter}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.instagram %}
+          <li><a href="{{info.instagram}}" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.linked_in %}
+          <li><a href="{{info.linked_in}}" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.youtube %}
+          <li><a href="{{info.youtube}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.pin_interest %}
+          <li><a href="{{info.pin_interest}}" target="_blank"><i class="fab fa-pinterest fa-2x"></i></a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="about" id="about">
+    <div class="container about__container--narrow">
+      <div class="page-section">
+        <h2 class="page-section__title">ABOUT ME</h2>
+          <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+          <div class="row gutters-80">
+            <div class="col-md-4">
+              <div class="about__image">
+                <img src="{{info.my_image.url}}" alt="" width="300">
+              </div>
+            </div>
+            <div class="col-md-8 about__content">
+              <p class="about__description">{{info.about_me}}</p>
+              <div class="row row--margin-top">
+                <div class="col-md-4">
+                  <p class="about__bio"><strong>NAME :</strong> <span style="text-transform: capitalize;">{{info.first_name}}</span> <span style="text-transform: capitalize;"></span>{{info.last_name}}</span></p>
+                  {% if info.age %}
+                  <p class="about__bio"><strong>AGE :</strong> {{info.age}}</p>
+                  {% endif %}
+                </div>
+                <div class="col-md-4">
+                  <p class="about__bio"><strong>JOB TITLE :</strong> {{info.profession}}</p>
+                  <p class="about__bio"><strong>LOCATION :</strong> {{info.location}}</p>
+                </div>
+              </div>
+              <div class="row">
+                {% if info.CV %}
+                <div class="col-md-4">
+                  <a class="button button--colorful button--margin" href="{{info.CV.url}}" download>DOWNLOAD CV</a>
+                </div>
+                {% endif %}
+                <div class="col-md-4">
+                  <a class="button button--colorful button--margin" href="#">HIRE ME</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="skill skill--bg" id="skill">
+    <div class="container skill__container--narrow">
+      <div class="page-section">
+        <h2 class="page-section__title page-section__title--white">MY SKILL</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style-white.png' %}" alt="">
+        <br>
+        <div class="row gutters-60">
+          {% for skill in skills %}
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <h4 class="skill__single-part__title" style="text-transform: uppercase;">{{skill.skill}}</h4>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width:80%;background-color: #7FB7FA;">
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service" id="services">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY SERVICES</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">{{info.about_services}} </p>
+        <div class="row gutters-70">
+          {% for service in services %}
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              {% if service.image %}
+              <img src="{{service.image.url}}" alt="" width="100">
+              {% endif %}
+              <h4 class="service__single-section__title" style="text-transform: uppercase;">{{service.service}}</h4>
+              <p class="service__single-section__paragraph">{{service.detail}} </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="overview overview--bg">
+    <div class="container">
+      <div class="page-section">
+        <div class="row gutters-140">
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">headset_mic</i>
+          <h2 class="overview__single-section__number">220</h2>
+          <p class="overview__single-section__title">Hand to Work</p>
+        </div>
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">mood</i>
+          <h2 class="overview__single-section__number">530</h2>
+          <p class="overview__single-section__title">Happy Client</p>
+        </div>
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">assignment_turned_in</i>
+          <h2 class="overview__single-section__number">780</h2>
+          <p class="overview__single-section__title">Finished Project</p>
+        </div>
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">local_bar</i>
+          <h2 class="overview__single-section__number">970</h2>
+          <p class="overview__single-section__title">Cups of coffe</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY PORTFOLIO</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <br>
+        <div class="portfolio__button-group">
+          <a class="button button--default" data-filter="all" href="#">ALL</a>
+          <a class="button button--default" data-filter=".category-a" href="#">DEVELOPMENT</a>
+          <a class="button button--default" data-filter=".category-b" href="#">DESIGN</a>
+          <a class="button button--default" data-filter=".category-c" href="#">HTML</a>
+          <a class="button button--default" data-filter=".category-d" href="#">JAVA</a>
+        </div>
+        <div class="row gutters-40">
+          {% for portfolio in portfolios %}
+          <div class="col-md-4">
+            <div class="portfolio__single-section mix {{portfolio.category}}">
+              <img class="portfolio__single-section__image img-responsive" src="{{portfolio.image.url}}" alt="" width="440">
+              <div class="portfolio__single-section__overlay">
+                <div class="overlay-content">
+                  <h4>{{portfolio.service}}</h4>
+                </div>
+                <div class="portfolio__single-section__search-icon">
+                  <a href="#"><img src="{% static 'assets/images/search-icon.png' %}" alt=""></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="slider slider--bg" id="testimonial">
+    <div id="myCarousel" class="carousel container slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      
+      <div class="carousel-inner">
+        <div class="item active">
+          {% for testimonial in testimonials %}
+          <div class="carousel-content">
+            <div class="">
+              <div class="text-center">
+                <img class="testimonial-image" src="{{testimonial.client_image.url}}" alt="" width="100">
+                <h4>{{testimonial.client_name}}</h4>
+                {% if testimonial.company %}
+                <h6>{{testimonial.company}}</h6>
+                {% else %}
+                <h6>{{testimonial.service}}</h6>
+                {% endif %}
+                <p>{{testimonial.testimony}} </p>
+                <div class="rating">
+                  <ul>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if teams %}
+  <section class="team" id="team">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY TEAM</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">{{info.about_team}}</p>
+        <div class="row gutters-40">
+          {% for team in teams %}
+          <div class="col-md-6 col-lg-3">
+            <div class="thumbnail">
+              <img class="img-responsive team-image" src="{{team.image.url}}" alt="">
+              <h4 class="team__single-section__name">{{team.name}}</h4>
+              <p class="team__single-section__title">{{team.role}}</p>
+
+              <div class="team__overlay">
+                <div class="team__overlay__content">
+                  <div class="team__single-section--backPage">
+                    <h4 style="padding-left: 0;" class="team__single-section__name">{{team.name}}</h4>
+                    <p style="padding-left: 0;" class="team__single-section__title">{{team.role}}</p>
+                    {% if team.skill1 %}
+                    <p class="team__single-section--backPage__title">{{team.skill1}} <span class="team__single-section--backPage__percent90">90&#37;</span></p>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:90%;background-color: #7F56FD;">
+                        <span class="progress-bar--dot-main"></span>
+                        <span class="progress-bar--dot"></span>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if team.skill2 %}
+                    <p class="team__single-section--backPage__title">{{team.skill2}} <span class="team__single-section--backPage__percent80">80&#37;</span></p>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:80%;background-color: #7F56FD;">
+                        <span class="progress-bar--dot-main"></span>
+                        <span class="progress-bar--dot"></span>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if team.skill3 %}
+                    <p class="team__single-section--backPage__title">{{team.skill3}} <span class="team__single-section--backPage__percent70">70&#37;</span></p>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:70%;background-color: #7F56FD;">
+                        <span class="progress-bar--dot-main"></span>
+                        <span class="progress-bar--dot"></span>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <hr style="border: 0;border-bottom: 1px solid #ECEFF1;display:block;padding-top: 45px;">
+                    <div class="social-icons">
+                      <ul>
+                        {% if team.whatsapp %}
+                        <li><a href="{{team.whatsapp}}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                        {% endif %}
+                        {% if team.facebook %}
+                        <li><a href="{{team.facebook}}" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                        {% endif %}
+                        {% if team.twitter %}
+                        <li><a href="{{team.twitter}}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        {% endif %}
+                        {% if team.instagram %}
+                        <li><a href="{{team.instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="brand-logo brand-logo--bg">
+    <div class="container">
+      <div class="row">
+        <div class="brand-logo__wrapper">
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-1.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-2.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-3.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-4.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-1.png' %}" alt=""></li>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="page-section">
+        <h2 class="page-section__title">CONTACT US</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}">
+        <form id="contact-form" method="post" autocomplete="off">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" maxlength="100" name="name" class="form-control" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" maxlength="50" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" maxlength="100" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" maxlength="3000" rows="12" cols="30" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-info btn-lg" id="contact-button">Send</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="blog" id="blog">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">BLOG POST</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <div class="row gutters-40">
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <img class="img-responsive" src="{% static 'assets/images/blog-1.png' %}" alt="">
+              <p class="blog__single__date">MAY 25 , 2017 </p>
+              <i class="material-icons">comment</i> 5
+              <a href="#"><h4 class="blog__single__title">HEADLINE LATEST WORLD NEWS</h4></a>
+              <p class="blog__single__paragraph">orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  Ut enim ad minim veniam <a href="#"><span class="blog__single__paragraph--read-more">READ MORE...</span></a></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <img src="{% static 'assets/images/blog-2.png' %}" alt="">
+              <p class="blog__single__date">MAY 25 , 2017 </p>
+              <i class="material-icons">comment</i> 5
+              <a href="#"><h4 class="blog__single__title">HEADLINE LATEST WORLD NEWS</h4></a>
+              <p class="blog__single__paragraph">orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  Ut enim ad minim veniam <a href="#"><span class="blog__single__paragraph--read-more">READ MORE...</span></a></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <img src="{% static 'assets/images/blog-3.png' %}" alt="">
+              <p class="blog__single__date">MAY 25 , 2017 </p>
+              <i class="material-icons">comment</i> 5
+              <a href="#"><h4 class="blog__single__title">HEADLINE LATEST WORLD NEWS</h4></a>
+              <p class="blog__single__paragraph">orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  Ut enim ad minim veniam <a href="#"><span class="blog__single__paragraph--read-more">READ MORE...</span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <footer class="footer footer--bg">
+    <div class="container text-center">
+      <h1 class="footer__title">{{info.first_name}} {{info.last_name}}</h1>
+      <ul class="footer__contact-information">
+        <li><a href="tel:{{info.phone_1}}"><i class="material-icons">phone</i> Hotline {{info.phone_1}}</a></li>
+        <li><a href="mailto:{{info.email_1}}"><i class="material-icons">email</i> {{info.email_1}}</a></li>
+        <li><a><i class="material-icons">location_on</i> {{info.address}}</a></li>
+      </ul>
+    </div>
+    <hr style="border: 0;border-top: 1px solid #525B60;display:block;margin-top: 40px;">
+    <div class="container text-center">
+      <div class="social-icon">
+        <ul>
+          {% if info.whatsapp %}
+          <li><a href="{{info.whatsapp}}" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.facebook %}
+          <li><a href="{{info.facebook}}" target="_blank"><i class="fab fa-facebook fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.twitter %}
+          <li><a href="{{info.twitter}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.instagram %}
+          <li><a href="{{info.instagram}}" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.linked_in %}
+          <li><a href="{{info.linked_in}}" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.tiktok %}
+          <li><a href="{{info.tiktok}}" target="_blank"><i class="fab fa-tiktok fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.youtube %}
+          <li><a href="{{info.youtube}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a></li>
+          {% endif %}
+          {% if info.pin_interest %}
+          <li><a href="{{info.pin_interest}}" target="_blank"><i class="fab fa-pinterest fa-2x"></i></a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <p class="footer__paragraph">Copyright &copy; 2017 DartThemes , All Rights Reserved.</p>
+    </div>
+  </footer>
+</div>
+  <script src="{% static 'assets/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/mixitup.js' %}"></script>
+  <script src="{% static 'js/all.min.js' %}"></script>
+  {{setting.google_analytics|safe}}
+
+  <script>
+    if (window.history.replaceState){
+      window.history.replaceState(null, null, window.location.href);
+    }
+    // calling mixitup
+    var mixer = mixitup(".portfolio");
+  </script>
+</body>
+</html>  
