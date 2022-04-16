@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from portfolioApp.sitemaps import StaticViewSitemap
+from portfolioApp.sitemaps import StaticViewSitemap, ContentSitemap
 from django.contrib.sitemaps.views import sitemap
 from portfolioApp import views
 
@@ -26,10 +26,14 @@ admin.site.site_header = "MY ADMIN"
 
 sitemaps = {
     'static': StaticViewSitemap,
+    'content': ContentSitemap,
 }
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path('portfolio/', views.portfolio, name="portfolio"),
+    path('contents/', views.contents, name="contents"),
+    path('content/<str:pk>/', views.content, name="content"),
     path('sitemap.xml/', sitemap, {'sitemaps':sitemaps}),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

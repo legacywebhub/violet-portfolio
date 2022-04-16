@@ -1,122 +1,50 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{setting.title}} | {{info.first_name}} {{info.last_name}}</title>
-  <meta name="keywords" content="{{setting.meta_keywords}}">
-  <meta name="description" content="{{setting.description}}">
 
-  <link rel="stylesheet" href="{% static 'assets/fonts/flat-icon/flaticon.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  <style>
-    .message {
-      color: #fff;
-    }
-    .team-image {
-      height: 300px;
-    }
-    .testimonial-image {
-      border-radius: 50%;
-    }
-    #contact {
-      min-height: 150vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #contact-form button {
-      border-radius: 0px;
-      background-color: rgba(108,76,206, .9);
-    }
-    .form-group input {
-      border-radius: 0px;
-      border-bottom: 5px;
-    }
-    .form-group textarea {
-      display: block;
-      width: 100%;
-      border-radius: 0px;
-      border: #e0e0e0 1.5px;
-      border-style: groove;
-    }
-  </style>
-</head>
-<body onunload="">
-<div id="content-wrapper">
-  <header class="header header--bg">
-    <div class="container">
-      <nav class="navbar">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span> 
-          </button>
-          {% if setting.logo %}
-          <img src="{{setting.logo.url}}" alt="Logo" width="120">
-          {% else %}
-          <a class="navbar-brand" href="#" style="text-transform: capitalize;">{{info.first_name}}</a>
-          {% endif %}
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#skill">SKILLS</a></li>
-            <li><a href="#services">SERVICES</a></li>  
-            <li><a href="#portfolio">PORTFOLIO</a></li> 
-            <li><a href="#team">TEAM</a></li> 
-            <li><a href="#contact">CONTACT</a></li> 
-          </ul>
-        </div>
-      </nav>
-      <div class="header__content text-center">
-        <span class="header__content__block">HELLO</span>
-        <h1 class="header__content__title">I'M <span style="text-transform: uppercase;">{{info.first_name}} {{info.last_name}}</span></h1>
-        <ul class="header__content__sub-title">
-          {% for skill in skills %}
-          <li>{{skill.skill}} <span class="padding">&#45;</span></li>
-          {% endfor %}
-        </ul>
-        {% if messages %}
-        {% for message in messages %}
-        <br><h2 class="message">{{message}}</h2>
-        {% endfor %}
-        {% else %}
-        <a class="header__button" href="#contact">HAVE PROJECT? LET'S TALK</a>
-        {% endif %}
-      </div>
-      <div class="social-icon pull-right">
-        <ul style="color: #fff;">
-          {% if info.whatsapp %}
-          <li><a href="{{info.whatsapp}}" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.facebook %}
-          <li><a href="{{info.facebook}}" target="_blank"><i class="fab fa-facebook fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.twitter %}
-          <li><a href="{{info.twitter}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.instagram %}
-          <li><a href="{{info.instagram}}" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.linked_in %}
-          <li><a href="{{info.linked_in}}" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.youtube %}
-          <li><a href="{{info.youtube}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.pin_interest %}
-          <li><a href="{{info.pin_interest}}" target="_blank"><i class="fab fa-pinterest fa-2x"></i></a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </header>
+{% block style %}
+<style>
+  .message {
+    color: #fff;
+  }
+  .section-button:hover {
+    transform: scale(110%, 110%);
+  }
+  .team-image {
+    height: 300px;
+  }
+  .testimonial-image {
+    border-radius: 50%;
+  }
+  .button-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  #contact {
+    min-height: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #contact-form button {
+    border-radius: 0px;
+    background-color: #029ddc;
+  }
+  .form-group input {
+    border-radius: 0px;
+    border-bottom: 5px;
+  }
+  .form-group textarea {
+    display: block;
+    width: 100%;
+    border-radius: 0px;
+    border: #e0e0e0 2px;
+    border-style: double;
+    padding: 10px 15px;
+  }
+</style>
+{% endblock %}
 
+{% block content %}
   <section class="about" id="about">
     <div class="container about__container--narrow">
       <div class="page-section">
@@ -149,7 +77,7 @@
                 </div>
                 {% endif %}
                 <div class="col-md-4">
-                  <a class="button button--colorful button--margin" href="#">HIRE ME</a>
+                  <a class="button button--colorful button--margin" href="#contact">HIRE ME</a>
                 </div>
               </div>
             </div>
@@ -161,7 +89,7 @@
   <section class="skill skill--bg" id="skill">
     <div class="container skill__container--narrow">
       <div class="page-section">
-        <h2 class="page-section__title page-section__title--white">MY SKILL</h2>
+        <h2 class="page-section__title page-section__title--white">MY SKILLS</h2>
         <img class="page-section__title-style" src="{% static 'assets/images/title-style-white.png' %}" alt="">
         <br>
         <div class="row gutters-60">
@@ -262,7 +190,8 @@
             </div>
           </div>
           {% endfor %}
-      </div>
+        </div>
+        <div class="button-container"><a href="{% url 'portfolio' %}"><button class="btn btn-info btn-lg section-button">See More Portfolio</button></a></div>
     </div>
   </section>
 
@@ -383,6 +312,32 @@
   </section>
   {% endif %}
 
+    {% if contents %}
+    <section class="blog" id="blog">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">SOME OF OUR CONTENTS</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">these are some of our best and exciting contents and is based on trends. </p>
+        <div class="row gutters-40">
+          {% for content in contents %}
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <!-- <img class="img-responsive" src="{% static 'assets/images/blog-1.png' %}" alt=""> -->
+              <p class="blog__single__date">{{content.created_at}} </p>
+              <!-- <i class="material-icons">comment</i> 5 -->
+              <a href="{% url 'content' content.id %}"><h4>{{content.title}}</h4></a>
+              <p id="content">{{content.content|truncatewords:50|safe}} <a href="{% url 'content' content.id %}"><span class="blog__single__paragraph--read-more">READ MORE</span></a></p><br>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="button-container"><a href="{% url 'contents' %}"><button class="btn btn-info btn-lg section-button">See More Contents</button></a></div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
   <section class="brand-logo brand-logo--bg">
     <div class="container">
       <div class="row">
@@ -427,101 +382,4 @@
       </div>
     </div>
   </section>
-
-  <!-- <section class="blog" id="blog">
-    <div class="container">
-      <div class="page-section">
-        <h2 class="page-section__title">BLOG POST</h2>
-        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
-        <p class="page-section__paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        <div class="row gutters-40">
-          <div class="col-md-4">
-            <div class="thumbnail text-center">
-              <img class="img-responsive" src="{% static 'assets/images/blog-1.png' %}" alt="">
-              <p class="blog__single__date">MAY 25 , 2017 </p>
-              <i class="material-icons">comment</i> 5
-              <a href="#"><h4 class="blog__single__title">HEADLINE LATEST WORLD NEWS</h4></a>
-              <p class="blog__single__paragraph">orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  Ut enim ad minim veniam <a href="#"><span class="blog__single__paragraph--read-more">READ MORE...</span></a></p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="thumbnail text-center">
-              <img src="{% static 'assets/images/blog-2.png' %}" alt="">
-              <p class="blog__single__date">MAY 25 , 2017 </p>
-              <i class="material-icons">comment</i> 5
-              <a href="#"><h4 class="blog__single__title">HEADLINE LATEST WORLD NEWS</h4></a>
-              <p class="blog__single__paragraph">orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  Ut enim ad minim veniam <a href="#"><span class="blog__single__paragraph--read-more">READ MORE...</span></a></p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="thumbnail text-center">
-              <img src="{% static 'assets/images/blog-3.png' %}" alt="">
-              <p class="blog__single__date">MAY 25 , 2017 </p>
-              <i class="material-icons">comment</i> 5
-              <a href="#"><h4 class="blog__single__title">HEADLINE LATEST WORLD NEWS</h4></a>
-              <p class="blog__single__paragraph">orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  Ut enim ad minim veniam <a href="#"><span class="blog__single__paragraph--read-more">READ MORE...</span></a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <footer class="footer footer--bg">
-    <div class="container text-center">
-      <h1 class="footer__title">{{info.first_name}} {{info.last_name}}</h1>
-      <ul class="footer__contact-information">
-        <li><a href="tel:{{info.phone_1}}"><i class="material-icons">phone</i> Hotline {{info.phone_1}}</a></li>
-        <li><a href="mailto:{{info.email_1}}"><i class="material-icons">email</i> {{info.email_1}}</a></li>
-        <li><a><i class="material-icons">location_on</i> {{info.address}}</a></li>
-      </ul>
-    </div>
-    <hr style="border: 0;border-top: 1px solid #525B60;display:block;margin-top: 40px;">
-    <div class="container text-center">
-      <div class="social-icon">
-        <ul>
-          {% if info.whatsapp %}
-          <li><a href="{{info.whatsapp}}" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.facebook %}
-          <li><a href="{{info.facebook}}" target="_blank"><i class="fab fa-facebook fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.twitter %}
-          <li><a href="{{info.twitter}}" target="_blank"><i class="fab fa-twitter fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.instagram %}
-          <li><a href="{{info.instagram}}" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.linked_in %}
-          <li><a href="{{info.linked_in}}" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.tiktok %}
-          <li><a href="{{info.tiktok}}" target="_blank"><i class="fab fa-tiktok fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.youtube %}
-          <li><a href="{{info.youtube}}" target="_blank"><i class="fab fa-youtube fa-2x"></i></a></li>
-          {% endif %}
-          {% if info.pin_interest %}
-          <li><a href="{{info.pin_interest}}" target="_blank"><i class="fab fa-pinterest fa-2x"></i></a></li>
-          {% endif %}
-        </ul>
-      </div>
-      <p class="footer__paragraph">Copyright &copy; 2017 DartThemes , All Rights Reserved.</p>
-    </div>
-  </footer>
-</div>
-  <script src="{% static 'assets/jquery/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/mixitup.js' %}"></script>
-  <script src="{% static 'js/all.min.js' %}"></script>
-  {{setting.google_analytics|safe}}
-
-  <script>
-    if (window.history.replaceState){
-      window.history.replaceState(null, null, window.location.href);
-    }
-    // calling mixitup
-    var mixer = mixitup(".portfolio");
-  </script>
-</body>
-</html>  
+{% endblock %}

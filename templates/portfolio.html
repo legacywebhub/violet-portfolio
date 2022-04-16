@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    #pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+    #pagination ul li{
+        display: inline;
+        margin: 0 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY PORTFOLIO</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <br>
+        <div class="portfolio__button-group">
+          <a class="button button--default" data-filter="all" href="#">ALL</a>
+          <a class="button button--default" data-filter=".category-a" href="#">DEVELOPMENT</a>
+          <a class="button button--default" data-filter=".category-b" href="#">DESIGN</a>
+          <a class="button button--default" data-filter=".category-c" href="#">HTML</a>
+          <a class="button button--default" data-filter=".category-d" href="#">JAVA</a>
+        </div>
+        <div class="row gutters-40">
+          {% for portfolio in portfolios %}
+          <div class="col-md-4">
+            <div class="portfolio__single-section mix {{portfolio.category}}">
+              <img class="portfolio__single-section__image img-responsive" src="{{portfolio.image.url}}" width="440">
+              <div class="portfolio__single-section__overlay">
+                <div class="overlay-content">
+                  <h4>{{portfolio.service}}</h4>
+                </div>
+                <div class="portfolio__single-section__search-icon">
+                  <a href="#"><img src="{% static 'assets/images/search-icon.png' %}"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+      <div id="pagination">
+        <ul>
+        {% if portfolios.has_previous %}
+        <li style="font-size:20px;"><a href="?page=1">&lsaquo; First</a></li>
+        <li style="font-size:20px;"><a href="?page={{ portfolios.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <span style="font-weight: bold; font-size:20px;">Page {{ portfolios.number }} of {{ portfolios.paginator.num_pages }}</span>
+        {% if portfolios.has_next %}
+        <li style="font-size:20px;"><a href="?page={{ portfolios.next_page_number }}">Next</a></li>
+        <li style="font-size:20px;"><a href="?page={{ portfolios.paginator.num_pages }}">Last &rsaquo;</a></li>
+        {% endif %}
+        </ul>
+        </div>
+    </div>
+    </div>
+  </section>
+{% endblock %}

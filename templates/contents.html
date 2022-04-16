@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    #pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+    #pagination ul li{
+        display: inline;
+        margin: 0 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="blog" id="blog">
+<div class="container">
+  <div class="page-section">
+    <h2 class="page-section__title">OUR CONTENTS</h2>
+    <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+    <div class="row gutters-40">
+      {% for content in contents %}
+      <div class="col-md-4">
+        <div class="thumbnail text-center">
+          <!-- <img class="img-responsive" src="{% static 'assets/images/blog-1.png' %}" alt=""> -->
+          <p class="blog__single__date">{{content.created_at}} </p>
+          <!-- <i class="material-icons">comment</i> 5 -->
+          <a href="{% url 'content' content.id %}"><h4>{{content.title}}</h4></a>
+          <p id="content">{{content.content|truncatewords:50|safe}} <a href="{% url 'content' content.id %}"><span class="blog__single__paragraph--read-more">READ MORE</span></a></p><br>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div id="pagination">
+        <ul>
+        {% if contents.has_previous %}
+        <li style="font-size:20px;"><a href="?page=1">&lsaquo; First</a></li>
+        <li style="font-size:20px;"><a href="?page={{ contents.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <span style="font-weight: bold; font-size:20px;">Page {{ contents.number }} of {{ contents.paginator.num_pages }}</span>
+        {% if contents.has_next %}
+        <li style="font-size:20px;"><a href="?page={{ contents.next_page_number }}">Next</a></li>
+        <li style="font-size:20px;"><a href="?page={{ contents.paginator.num_pages }}">Last &rsaquo;</a></li>
+        {% endif %}
+        </ul>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

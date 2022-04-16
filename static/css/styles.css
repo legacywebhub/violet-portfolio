@@ -107,7 +107,7 @@ html,body {
   right: 0;
   top: 0;
   bottom: 0;
-  background: -webkit-linear-gradient( 90deg, rgba(108,76,206, .9) 0%, rgba(127,86,253, .9) 100%);
+  background: -webkit-linear-gradient( 90deg, #03519fc0 0%, #029edcc0 100%);
   z-index: -1;
 }
 
@@ -146,7 +146,7 @@ html,body {
   border-radius: 30px;
   display: inline-block;
   font-size: 15px;
-  color: #7f56fd;
+  color: #029ddc;
   font-family: Roboto-Light;
   font-weight: bold;
   margin-top: 30px;
@@ -193,7 +193,7 @@ html,body {
 }
 
 .Rectangle_ {
-  background-image: -ms-linear-gradient( 90deg, rgb(108,76,206) 0%, rgb(127,86,253) 100%);
+  background-image: -ms-linear-gradient( 90deg, #03519fc0 0%, #029edcc0 100%);
   opacity: 0.929;
   position: absolute;
   left: 0px;
@@ -314,7 +314,7 @@ html,body {
 }
 
 .button--colorful{
- background-color: #7F56FD;
+background-color: #029ddcc0;
  font-family: Roboto-Light;
  color: #fff;
 }
@@ -326,9 +326,9 @@ html,body {
 }
 
 .button--default:hover{
-  background-color: #7F56FD;
+  background-color: #029edca1;
   color: #fff;
-  border: 1px solid #7F56FD;
+  transform: scale(80%, 80%);
 }
 
 .button--margin{
@@ -337,12 +337,12 @@ html,body {
 }
 
 .portfolio__button-group .mixitup-control-active{
-  background-color: #7F56FD;
+  background-color: #029edcee;
   color: #fff;
 }
 
 .skill--bg{
-  background: url("../assets/images/skill-background.png") no-repeat;
+  background: linear-gradient( 90deg, #03519fa1 0%, #029edca1 100%);
   background-size: cover;
   position: relative;
   z-index: 1;
@@ -355,7 +355,7 @@ html,body {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(120, 88, 221, .9);
+  background-color: linear-gradient( 90deg, #03519fa1 0%, #029edca1 100%);
   z-index: -1;
 }
 
@@ -451,7 +451,7 @@ html,body {
  right: 0;
  top: 0;
  bottom: 0;
- background-color: rgba(120, 88, 221, .9);
+ background-color: #029ddca1;
  z-index: -1;
 }
 
@@ -552,7 +552,7 @@ html,body {
   opacity: 0;
   -webkit-transition: .3s ease;
   transition: .3s ease;
-  background-color: rgba(133, 91, 249, .9);
+  background-color: #029ddcc0;
   border-radius: 10px;
 }
 
@@ -593,7 +593,7 @@ html,body {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(120, 88, 221, .9);
+  background-color: #029ddca1;
   z-index: -1;
 }
 
@@ -772,7 +772,7 @@ html,body {
 
 .progress-bar--dot-main{
   background: #fff none repeat scroll 0 0;
-  border: 2px solid #7f56fd;
+  border: 2px solid #029ddcc0;
   border-radius: 50%;
   height: 20px;
   position: absolute;
@@ -782,7 +782,7 @@ html,body {
 }
 
 .progress-bar--dot{
-  background: #7f56fd none repeat scroll 0 0;
+  background: #029ddcc0 none repeat scroll 0 0;
   border-radius: 50%;
   display: block;
   height: 10px;
@@ -851,7 +851,7 @@ html,body {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(120, 88, 221, .9);
+  background: linear-gradient( 90deg, #03519fd0 0%, #029edcd0 100%);
   z-index: -1;
 }
 

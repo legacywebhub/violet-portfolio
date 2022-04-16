@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class WebsiteSetting(models.Model):
@@ -103,6 +104,19 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.client_name
+    
+class Content(models.Model):
+    created_at = models.DateField(auto_now_add=True)
+    last_modified = models.DateField(auto_now=True)
+    category = models.CharField(max_length=50, blank=True, null=True)
+    title = models.CharField(max_length=150, blank=False)
+    image = models.ImageField(upload_to='images/contents', blank=True)
+    content = RichTextField(max_length=20000, blank=False, null=False)
+    quote = models.CharField(max_length=250, blank=True, null=True)
+    ad = models.TextField(max_length=2000, blank=True, null=True)
+    
+    def get_absolute_url(self):
+        return f'/content/{self.id}/'
 
 
 class Message(models.Model):

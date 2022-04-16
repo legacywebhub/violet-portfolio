@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'cloudinary_storage',
     'cloudinary',
+    'ckeditor',
     'portfolioApp',
 ]
 
