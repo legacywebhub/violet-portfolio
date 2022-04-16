@@ -21,7 +21,7 @@
     <h2 class="page-section__title">OUR CONTENTS</h2>
     <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
     <div class="row gutters-40">
-      {% for content in contents %}
+      {% for content in contents reversed %}
       <div class="col-md-4">
         <div class="thumbnail text-center">
           <!-- <img class="img-responsive" src="{% static 'assets/images/blog-1.png' %}" alt=""> -->

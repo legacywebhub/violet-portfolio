@@ -29,7 +29,7 @@
           <a class="button button--default" data-filter=".category-d" href="#">JAVA</a>
         </div>
         <div class="row gutters-40">
-          {% for portfolio in portfolios %}
+          {% for portfolio in portfolios reversed %}
           <div class="col-md-4">
             <div class="portfolio__single-section mix {{portfolio.category}}">
               <img class="portfolio__single-section__image img-responsive" src="{{portfolio.image.url}}" width="440">

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -48,7 +48,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 def portfolio(request):
-    p = Paginator(Portfolio.objects.all(), 3)
+    p = Paginator(Portfolio.objects.all(), 12)
     page = request.GET.get('page')
     portfolios = p.get_page(page)
     setting = WebsiteSetting.objects.last()
@@ -58,7 +58,7 @@ def portfolio(request):
 
 
 def contents(request):
-    p = Paginator(Content.objects.all(), 3)
+    p = Paginator(Content.objects.all(), 12)
     page = request.GET.get('page')
     contents = p.get_page(page)
     setting = WebsiteSetting.objects.last()
@@ -68,7 +68,7 @@ def contents(request):
 
 
 def content(request, pk):
-    content = Content.objects.get(id=pk)
+    content = get_object_or_404(Content, id=pk)
     setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     context = {
@@ -77,3 +77,23 @@ def content(request, pk):
         'info':info,
     }
     return render(request, 'content.html', context)
+
+
+def error404(request, exception):
+    setting = WebsiteSetting.objects.last()
+    info = Info.objects.last()
+    context = {
+        'setting': setting,
+        'info':info,
+    }
+    return render(request, 'error404.html', context)
+
+
+def serverError(request):
+    setting = WebsiteSetting.objects.last()
+    info = Info.objects.last()
+    context = {
+        'setting': setting,
+        'info':info,
+    }
+    return render(request, 'serverError.html', context)

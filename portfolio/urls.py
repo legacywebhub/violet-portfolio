@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from portfolioApp.sitemaps import StaticViewSitemap, ContentSitemap
 from django.contrib.sitemaps.views import sitemap
 from portfolioApp import views
+from django.conf.urls import handler404
 
 admin.site.site_title = "My Admin"
 admin.site.site_header = "MY ADMIN" 
@@ -37,3 +38,6 @@ urlpatterns = [
     path('content/<str:pk>/', views.content, name="content"),
     path('sitemap.xml/', sitemap, {'sitemaps':sitemaps}),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+handler404 = 'portfolioApp.views.error404'
+handler500 = 'portfolioApp.views.serverError'

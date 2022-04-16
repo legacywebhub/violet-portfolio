@@ -35,12 +35,12 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li><a href="/">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#skill">SKILLS</a></li>
-            <li><a href="#services">SERVICES</a></li>  
-            <li><a href="#portfolio">PORTFOLIO</a></li> 
-            <li><a href="#team">TEAM</a></li> 
-            <li><a href="#contact">CONTACT</a></li> 
+            <li><a href="#about">ABOUT</a></li>  
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            {% if contents %}
+            <li><a href="#contents">CONTENTS</a></li>
+            {% endif %} 
+            <li><a href="#contact">CONTACT ME</a></li> 
           </ul>
         </div>
       </nav>
