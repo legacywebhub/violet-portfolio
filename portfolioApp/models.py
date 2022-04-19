@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 # Create your models here.
 class WebsiteSetting(models.Model):
@@ -27,7 +28,7 @@ class Info(models.Model):
     about_me = models.TextField(max_length=500, blank=False)
     about_services = models.TextField(max_length=2000, blank=True)
     about_team = models.TextField(max_length=1000, blank=True)
-    CV = models.FileField(upload_to="documents", blank=True)
+    CV = models.FileField(upload_to="documents", blank=True, storage=RawMediaCloudinaryStorage())
     address = models.CharField(max_length=150, blank=False)
     email_1 = models.EmailField(blank=False)
     email_2 = models.EmailField(blank=True)
