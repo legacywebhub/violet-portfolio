@@ -1,0 +1,385 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+  .message {
+    color: #fff;
+  }
+  .section-button:hover {
+    transform: scale(110%, 110%);
+  }
+  .team-image {
+    height: 300px;
+  }
+  .testimonial-image {
+    border-radius: 50%;
+  }
+  .button-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  #contact {
+    min-height: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #contact-form button {
+    border-radius: 0px;
+    background-color: #029ddc;
+  }
+  .form-group input {
+    border-radius: 0px;
+    border-bottom: 5px;
+  }
+  .form-group textarea {
+    display: block;
+    width: 100%;
+    border-radius: 0px;
+    border: #e0e0e0 2px;
+    border-style: double;
+    padding: 10px 15px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <section class="about" id="about">
+    <div class="container about__container--narrow">
+      <div class="page-section">
+        <h2 class="page-section__title">ABOUT ME</h2>
+          <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+          <div class="row gutters-80">
+            <div class="col-md-4">
+              <div class="about__image">
+                <img src="{{info.my_image.url}}" alt="" width="300">
+              </div>
+            </div>
+            <div class="col-md-8 about__content">
+              <p class="about__description">{{info.about_me}}</p>
+              <div class="row row--margin-top">
+                <div class="col-md-4">
+                  <p class="about__bio"><strong>NAME :</strong> <span style="text-transform: capitalize;">{{info.first_name}}</span> <span style="text-transform: capitalize;"></span>{{info.last_name}}</span></p>
+                  {% if info.age %}
+                  <p class="about__bio"><strong>AGE :</strong> {{info.age}}</p>
+                  {% endif %}
+                </div>
+                <div class="col-md-4">
+                  <p class="about__bio"><strong>JOB TITLE :</strong> {{info.profession}}</p>
+                  <p class="about__bio"><strong>LOCATION :</strong> {{info.location}}</p>
+                </div>
+              </div>
+              <div class="row">
+                {% if info.CV %}
+                <div class="col-md-4">
+                  <a class="button button--colorful button--margin" href="{{info.CV.url}}" download>DOWNLOAD CV</a>
+                </div>
+                {% endif %}
+                <div class="col-md-4">
+                  <a class="button button--colorful button--margin" href="#contact">HIRE ME</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="skill skill--bg" id="skill">
+    <div class="container skill__container--narrow">
+      <div class="page-section">
+        <h2 class="page-section__title page-section__title--white">MY SKILLS</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style-white.png' %}" alt="">
+        <br>
+        <div class="row gutters-60">
+          {% for skill in skills %}
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <h4 class="skill__single-part__title" style="text-transform: uppercase;">{{skill.skill}}</h4>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width:80%;background-color: #7FB7FA;">
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service" id="services">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY SERVICES</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">{{info.about_services}} </p>
+        <div class="row gutters-70">
+          {% for service in services %}
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              {% if service.image %}
+              <img src="{{service.image.url}}" alt="" width="100">
+              {% endif %}
+              <h4 class="service__single-section__title" style="text-transform: uppercase;">{{service.service}}</h4>
+              <p class="service__single-section__paragraph">{{service.detail}} </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="overview overview--bg">
+    <div class="container">
+      <div class="page-section">
+        <div class="row gutters-140">
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">headset_mic</i>
+          <h2 class="overview__single-section__number">220</h2>
+          <p class="overview__single-section__title">Hand to Work</p>
+        </div>
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">mood</i>
+          <h2 class="overview__single-section__number">530</h2>
+          <p class="overview__single-section__title">Happy Client</p>
+        </div>
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">assignment_turned_in</i>
+          <h2 class="overview__single-section__number">780</h2>
+          <p class="overview__single-section__title">Finished Project</p>
+        </div>
+        <div class="col-xs-6 col-lg-3 overview__single-section">
+          <i class="material-icons">local_bar</i>
+          <h2 class="overview__single-section__number">970</h2>
+          <p class="overview__single-section__title">Cups of coffe</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY PORTFOLIO</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <br>
+        <div class="portfolio__button-group">
+          <a class="button button--default" data-filter="all" href="#">ALL</a>
+          <a class="button button--default" data-filter=".category-a" href="#">DEVELOPMENT</a>
+          <a class="button button--default" data-filter=".category-b" href="#">DESIGN</a>
+          <a class="button button--default" data-filter=".category-c" href="#">HTML</a>
+          <a class="button button--default" data-filter=".category-d" href="#">JAVA</a>
+        </div>
+        <div class="row gutters-40">
+          {% for portfolio in portfolios %}
+          <div class="col-md-4">
+            <div class="portfolio__single-section mix {{portfolio.category}}">
+              <img class="portfolio__single-section__image img-responsive" src="{{portfolio.image.url}}" alt="" width="440">
+              <div class="portfolio__single-section__overlay">
+                <div class="overlay-content">
+                  <h4>{{portfolio.service}}</h4>
+                </div>
+                <div class="portfolio__single-section__search-icon">
+                  <a href="#"><img src="{% static 'assets/images/search-icon.png' %}" alt=""></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="button-container"><a href="{% url 'portfolio' %}"><button class="btn btn-info btn-lg section-button">See More Portfolio</button></a></div>
+    </div>
+  </section>
+
+  <section class="slider slider--bg" id="testimonial">
+    <div id="myCarousel" class="carousel container slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      
+      <div class="carousel-inner">
+        <div class="item active">
+          {% for testimonial in testimonials %}
+          <div class="carousel-content">
+            <div class="">
+              <div class="text-center">
+                <img class="testimonial-image" src="{{testimonial.client_image.url}}" alt="" width="100">
+                <h4>{{testimonial.client_name}}</h4>
+                {% if testimonial.company %}
+                <h6>{{testimonial.company}}</h6>
+                {% else %}
+                <h6>{{testimonial.service}}</h6>
+                {% endif %}
+                <p>{{testimonial.testimony}} </p>
+                <div class="rating">
+                  <ul>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                    <li><i class="material-icons">star</i></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if teams %}
+  <section class="team" id="team">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">MY TEAM</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">{{info.about_team}}</p>
+        <div class="row gutters-40">
+          {% for team in teams %}
+          <div class="col-md-6 col-lg-3">
+            <div class="thumbnail">
+              <img class="img-responsive team-image" src="{{team.image.url}}" alt="">
+              <h4 class="team__single-section__name">{{team.name}}</h4>
+              <p class="team__single-section__title">{{team.role}}</p>
+
+              <div class="team__overlay">
+                <div class="team__overlay__content">
+                  <div class="team__single-section--backPage">
+                    <h4 style="padding-left: 0;" class="team__single-section__name">{{team.name}}</h4>
+                    <p style="padding-left: 0;" class="team__single-section__title">{{team.role}}</p>
+                    {% if team.skill1 %}
+                    <p class="team__single-section--backPage__title">{{team.skill1}} <span class="team__single-section--backPage__percent90">90&#37;</span></p>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:90%;background-color: #7F56FD;">
+                        <span class="progress-bar--dot-main"></span>
+                        <span class="progress-bar--dot"></span>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if team.skill2 %}
+                    <p class="team__single-section--backPage__title">{{team.skill2}} <span class="team__single-section--backPage__percent80">80&#37;</span></p>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:80%;background-color: #7F56FD;">
+                        <span class="progress-bar--dot-main"></span>
+                        <span class="progress-bar--dot"></span>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if team.skill3 %}
+                    <p class="team__single-section--backPage__title">{{team.skill3}} <span class="team__single-section--backPage__percent70">70&#37;</span></p>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width:70%;background-color: #7F56FD;">
+                        <span class="progress-bar--dot-main"></span>
+                        <span class="progress-bar--dot"></span>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <hr style="border: 0;border-bottom: 1px solid #ECEFF1;display:block;padding-top: 45px;">
+                    <div class="social-icons">
+                      <ul>
+                        {% if team.whatsapp %}
+                        <li><a href="{{team.whatsapp}}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                        {% endif %}
+                        {% if team.facebook %}
+                        <li><a href="{{team.facebook}}" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                        {% endif %}
+                        {% if team.twitter %}
+                        <li><a href="{{team.twitter}}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        {% endif %}
+                        {% if team.instagram %}
+                        <li><a href="{{team.instagram}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+    {% if contents %}
+    <section class="blog" id="contents">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">SOME OF OUR CONTENTS</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">these are some of our best and exciting contents and is based on trends. </p>
+        <div class="row gutters-40">
+          {% for content in contents %}
+          <div class="col-md-4">
+            <div class="thumbnail text-center">
+              <!-- <img class="img-responsive" src="{% static 'assets/images/blog-1.png' %}" alt=""> -->
+              <p class="blog__single__date">{{content.created_at}} </p>
+              <!-- <i class="material-icons">comment</i> 5 -->
+              <a href="{% url 'content' content.id %}"><h4>{{content.title}}</h4></a>
+              <p id="content">{{content.content|truncatewords:50|safe}} <a href="{% url 'content' content.id %}"><span class="blog__single__paragraph--read-more">READ MORE</span></a></p><br>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="button-container"><a href="{% url 'contents' %}"><button class="btn btn-info btn-lg section-button">See More Contents</button></a></div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="brand-logo brand-logo--bg">
+    <div class="container">
+      <div class="row">
+        <div class="brand-logo__wrapper">
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-1.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-2.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-3.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-4.png' %}" alt=""></li>
+          <li><img class="img-responsive" src="{% static 'assets/images/brand-1.png' %}" alt=""></li>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="page-section">
+        <h2 class="page-section__title">CONTACT US</h2>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}">
+        <form id="contact-form" method="post" autocomplete="off">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" maxlength="100" name="name" class="form-control" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" maxlength="50" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" maxlength="100" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" maxlength="3000" rows="12" cols="30" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-info btn-lg" id="contact-button">Send</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

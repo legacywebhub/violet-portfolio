@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+#content {
+    display: block;
+    margin: 0 auto;
+}
+#content-image {
+  text-align: center;
+  margin: 35px auto;
+}
+#ad {
+    text-align: center;
+    margin: 30px auto;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <section id="content">
+    <div class="container">
+      <div class="page-section">
+        <h3 class="page-section__title">{{content.title}}</h3>
+        <img class="page-section__title-style" src="{% static 'assets/images/title-style.png' %}" alt="">
+        {% if content.image %}
+        <div id="content-image">
+          <img src="{{content.image.url}}" width="400" alt="">
+        </div>
+        {% endif %}
+        <div style="font-size: 16px;">{{content.content|safe}}</div><br><br>
+        {% if content.category %}
+        <p style="text-align: right;">category: <i>{{content.category}}</i></i></p>
+        {% endif %}
+        <p style="text-align: right;">last modified: <i>{{content.last_modified}}</i></i></p>
+        {% if content.quote %}<br><br><p><i class="fas fa-quote-left fa-2x"></i> <blockquote>{{content.quote}}</blockquote></p>{% endif %}
+        {% if content.ad %}<div id="ad">{{content.ad|safe}}</div>{% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
