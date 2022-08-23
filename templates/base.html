@@ -140,7 +140,9 @@
   <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'js/mixitup.js' %}"></script>
   <script src="{% static 'js/all.min.js' %}"></script>
+  {% if setting.google_analytics %}
   {{setting.google_analytics|safe}}
+  {% endif %}
 
   <script>
     if (window.history.replaceState){
