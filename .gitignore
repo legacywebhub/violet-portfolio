@@ -146,4 +146,3 @@ cython_debug/
 
 # My ignores
 media/
-staticfiles/
