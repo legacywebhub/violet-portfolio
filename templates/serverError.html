@@ -12,11 +12,15 @@
   <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% block style %}
+  <style>
+  .header {
+    height: 100vh;
+  }
+  </style>
   {% endblock %}
 </head>
 
-<body onunload="">
-<div id="content-wrapper">
+<body>
   <header class="header header--bg">
     <div class="container">
       <nav class="navbar">
@@ -27,9 +31,9 @@
             <span class="icon-bar"></span> 
           </button>
           {% if setting.logo %}
-          <img src="{{setting.logo.url}}" alt="Logo" width="120">
+          <img src="{{setting.logo.url}}" alt="LOGO" style="color: #fff;" width="120">
           {% else %}
-          <a class="navbar-brand" href="#" style="text-transform: capitalize;">{{info.first_name}}</a>
+          <a class="navbar-brand" href="#" style="text-transform: uppercase; font-size: 25px; color: #fff;">{{info.first_name}}</a>
           {% endif %}
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -46,7 +50,7 @@
       </nav>
       <div class="header__content text-center">
         <h2 class="header__content__block">Internal server error 500</h2>
-        <p style="font-size: 22px;">sorry there was an error while loading the page... try again later as we are working to fix this as soon as possible!</p>
+        <p style="font-size: 22px; color: #fff;">sorry there was an error while loading the page...</p>
       </div>
       <div class="social-icon pull-right">
         <ul style="color: #fff;">
@@ -75,3 +79,5 @@
       </div>
     </div>
   </header>
+</body>
+</html>

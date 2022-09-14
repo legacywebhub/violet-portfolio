@@ -7,9 +7,9 @@ class WebsiteSetting(models.Model):
     title = models.CharField(max_length=40, blank=False)
     meta_keywords = models.CharField(max_length=200, blank=False)
     meta_description = models.TextField(max_length=160, blank=False)
-    logo = models.ImageField(upload_to="violetportfolio/images/setting", blank=True)
+    logo = models.ImageField(upload_to="violetportfolio/images/setting", blank=True, null=True)
     header = models.CharField(max_length=50, blank=True, null=True)
-    google_analytics = models.TextField(max_length=1500, blank=True) 
+    google_analytics = models.TextField(max_length=1500, blank=True, null=True) 
 
     def save(self, *args, **kwargs):
         if not self.id and WebsiteSetting.objects.exists():
@@ -21,28 +21,28 @@ class WebsiteSetting(models.Model):
 class Info(models.Model):
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
-    age = models.PositiveIntegerField(blank=True)
+    age = models.PositiveIntegerField(blank=True, null=True)
     location = models.CharField(max_length=30, blank=False)
     profession = models.CharField(max_length=30,blank=False)
-    my_image = models.ImageField(upload_to="violetportfolio/images/about", blank=True)
+    my_image = models.ImageField(upload_to="violetportfolio/images/about", blank=True, null=True)
     about_me = models.TextField(max_length=500, blank=False)
-    about_services = models.TextField(max_length=2000, blank=True)
-    about_team = models.TextField(max_length=1000, blank=True)
-    CV = models.FileField(upload_to="violetportfolio/documents", blank=True, storage=RawMediaCloudinaryStorage())
+    about_services = models.TextField(max_length=2000, blank=True, null=True)
+    about_team = models.TextField(max_length=1000, blank=True, null=True)
+    CV = models.FileField(upload_to="violetportfolio/documents", blank=True, storage=RawMediaCloudinaryStorage(), null=True)
     address = models.CharField(max_length=150, blank=False)
     email_1 = models.EmailField(blank=False)
-    email_2 = models.EmailField(blank=True)
+    email_2 = models.EmailField(blank=True, null=True)
     phone_1 = models.CharField(max_length=20, blank=False) 
-    phone_2 = models.CharField(max_length=20, blank=True)
-    phone_3 = models.CharField(max_length=20, blank=True)
-    whatsapp = models.URLField(max_length=300, blank=True)
-    facebook = models.URLField(max_length=300, blank=True)
-    twitter = models.URLField(max_length=300, blank=True)
-    instagram = models.URLField(max_length=300, blank=True)
-    tiktok = models.URLField(max_length=300, blank=True)
-    linked_in = models.URLField(max_length=300, blank=True)
-    youtube = models.URLField(max_length=300, blank=True)
-    pin_interest = models.URLField(max_length=300, blank=True)
+    phone_2 = models.CharField(max_length=20, blank=True, null=True)
+    phone_3 = models.CharField(max_length=20, blank=True, null=True)
+    whatsapp = models.URLField(max_length=300, blank=True, null=True)
+    facebook = models.URLField(max_length=300, blank=True, null=True)
+    twitter = models.URLField(max_length=300, blank=True, null=True)
+    instagram = models.URLField(max_length=300, blank=True, null=True)
+    tiktok = models.URLField(max_length=300, blank=True, null=True)
+    linked_in = models.URLField(max_length=300, blank=True, null=True)
+    youtube = models.URLField(max_length=300, blank=True, null=True)
+    pin_interest = models.URLField(max_length=300, blank=True, null=True)
     
     def save(self, *args, **kwargs):
         if not self.id and Info.objects.exists():
@@ -60,7 +60,7 @@ class Skill(models.Model):
 
 class Service(models.Model):
     service = models.CharField(max_length=50, blank=False)
-    image = models.ImageField(upload_to="violetportfolio/images/services",blank=True)
+    image = models.ImageField(upload_to="violetportfolio/images/services",blank=True, null=True)
     detail = models.TextField(max_length=500, blank=False)
     
     def __str__(self):
@@ -70,13 +70,13 @@ class Team(models.Model):
     name = models.CharField(max_length=50, blank=False)
     image = models.ImageField(upload_to="violetportfolio/images/team", blank=False)
     role = models.CharField(max_length=50, blank=False)
-    skill1 = models.CharField(max_length=25, blank=True)
-    skill2 = models.CharField(max_length=25, blank=True)
-    skill3 = models.CharField(max_length=25, blank=True)
-    whatsapp = models.URLField(max_length=300, blank=True)
-    facebook = models.URLField(max_length=300, blank=True)
-    twitter = models.URLField(max_length=300, blank=True)
-    instagram = models.URLField(max_length=300, blank=True)
+    skill1 = models.CharField(max_length=25, blank=True, null=True)
+    skill2 = models.CharField(max_length=25, blank=True, null=True)
+    skill3 = models.CharField(max_length=25, blank=True, null=True)
+    whatsapp = models.URLField(max_length=300, blank=True, null=True)
+    facebook = models.URLField(max_length=300, blank=True, null=True)
+    twitter = models.URLField(max_length=300, blank=True, null=True)
+    instagram = models.URLField(max_length=300, blank=True, null=True)
 
 
 class Portfolio(models.Model):
@@ -89,7 +89,7 @@ class Portfolio(models.Model):
     name = models.CharField(max_length=50, blank=True)
     category = models.CharField(max_length=25, choices=categories, default='category-a')
     service = models.CharField(max_length=25, blank=False)
-    author = models.CharField(max_length=25, blank=True)
+    author = models.CharField(max_length=25, blank=True, null=True)
     image = models.ImageField(upload_to="violetportfolio/images/portfolio", blank=False)
     detail = models.TextField(max_length=1500, blank=True)
 
@@ -111,7 +111,7 @@ class Content(models.Model):
     last_modified = models.DateField(auto_now=True)
     category = models.CharField(max_length=50, blank=True, null=True)
     title = models.CharField(max_length=150, blank=False)
-    image = models.ImageField(upload_to='violetportfolio/images/contents', blank=True)
+    image = models.ImageField(upload_to='violetportfolio/images/contents', blank=True, null=True)
     image_url = models.CharField(max_length=2500, blank=True, null=True)
     content = RichTextField(max_length=20000, blank=False, null=False)
     quote = models.CharField(max_length=250, blank=True, null=True)
