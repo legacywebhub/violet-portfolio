@@ -35,14 +35,14 @@ class Info(models.Model):
     phone_1 = models.CharField(max_length=20, blank=False) 
     phone_2 = models.CharField(max_length=20, blank=True, null=True)
     phone_3 = models.CharField(max_length=20, blank=True, null=True)
-    whatsapp = models.URLField(max_length=300, blank=True, null=True)
-    facebook = models.URLField(max_length=300, blank=True, null=True)
-    twitter = models.URLField(max_length=300, blank=True, null=True)
-    instagram = models.URLField(max_length=300, blank=True, null=True)
-    tiktok = models.URLField(max_length=300, blank=True, null=True)
-    linked_in = models.URLField(max_length=300, blank=True, null=True)
-    youtube = models.URLField(max_length=300, blank=True, null=True)
-    pin_interest = models.URLField(max_length=300, blank=True, null=True)
+    whatsapp_link = models.URLField(max_length=300, blank=True, null=True)
+    facebook_link = models.URLField(max_length=300, blank=True, null=True)
+    twitter_link = models.URLField(max_length=300, blank=True, null=True)
+    instagram_link = models.URLField(max_length=300, blank=True, null=True)
+    tiktok_link = models.URLField(max_length=300, blank=True, null=True)
+    linkedin_link = models.URLField(max_length=300, blank=True, null=True)
+    youtube_link = models.URLField(max_length=300, blank=True, null=True)
+    pin_interest_link = models.URLField(max_length=300, blank=True, null=True)
     
     def save(self, *args, **kwargs):
         if not self.id and Info.objects.exists():
@@ -73,10 +73,10 @@ class Team(models.Model):
     skill1 = models.CharField(max_length=25, blank=True, null=True)
     skill2 = models.CharField(max_length=25, blank=True, null=True)
     skill3 = models.CharField(max_length=25, blank=True, null=True)
-    whatsapp = models.URLField(max_length=300, blank=True, null=True)
-    facebook = models.URLField(max_length=300, blank=True, null=True)
-    twitter = models.URLField(max_length=300, blank=True, null=True)
-    instagram = models.URLField(max_length=300, blank=True, null=True)
+    whatsapp_link = models.URLField(max_length=300, blank=True, null=True)
+    facebook_link = models.URLField(max_length=300, blank=True, null=True)
+    twitter_link = models.URLField(max_length=300, blank=True, null=True)
+    instagram_link = models.URLField(max_length=300, blank=True, null=True)
 
 
 class Portfolio(models.Model):
