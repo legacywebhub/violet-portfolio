@@ -6,14 +6,14 @@ class InfoAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'image')
 
     def image(self, obj):
-        return format_html(f'<img src="/media/{obj.my_image}" style="width:100px;">')
+        return format_html(f'<img src="https://res.cloudinary.com/legacy-web-tech/image/upload/v1/{obj.my_image}" style="width:100px;">')
     
     
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'role', 'team_image')
     
     def team_image(self, obj):
-        return format_html(f'<img src="/media/{obj.image}" style="width:100px;">')
+        return format_html(f'<img src="https://res.cloudinary.com/legacy-web-tech/image/upload/v1/{obj.image}" style="width:100px;">')
     
     
 class PortfolioAdmin(admin.ModelAdmin):
@@ -21,7 +21,7 @@ class PortfolioAdmin(admin.ModelAdmin):
     list_per_page = 10
     
     def portfolio_image(self, obj):
-        return format_html(f'<img src="/media/{obj.image}" style="width:100px;">')
+        return format_html(f'<img src="https://res.cloudinary.com/legacy-web-tech/image/upload/v1/{obj.image}" style="width:100px;">')
     
     
 class MessageAdmin(admin.ModelAdmin):
@@ -46,6 +46,7 @@ class TestimonialAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Skill)
 admin.site.register(Service)
+admin.site.register(PortfolioCategory)
 admin.site.register(Info, InfoAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Message, MessageAdmin)

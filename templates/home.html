@@ -9,6 +9,9 @@
   .section-button:hover {
     transform: scale(110%, 110%);
   }
+  .portfolio-category {
+    text-transform: uppercase;
+  }
   .team-image {
     height: 300px;
   }
@@ -169,19 +172,18 @@
         <br>
         <div class="portfolio__button-group">
           <a class="button button--default" data-filter="all" href="#">ALL</a>
-          <a class="button button--default" data-filter=".category-a" href="#">DEVELOPMENT</a>
-          <a class="button button--default" data-filter=".category-b" href="#">DESIGN</a>
-          <a class="button button--default" data-filter=".category-c" href="#">HTML</a>
-          <a class="button button--default" data-filter=".category-d" href="#">JAVA</a>
+          {% for category in portfolio_categories %}
+          <a class="button button--default portfolio-category" data-filter=".{{category.category}}" href="#">{{category.get_category_display}}</a>
+          {% endfor %}
         </div>
         <div class="row gutters-40">
           {% for portfolio in portfolios %}
           <div class="col-md-4">
             <div class="portfolio__single-section mix {{portfolio.category}}">
-              <img class="portfolio__single-section__image img-responsive" src="{{portfolio.image.url}}" alt="" width="440">
+              <img class="portfolio__single-section__image img-responsive" src="{{portfolio.image.url}}" alt="" height="450" width="100%">
               <div class="portfolio__single-section__overlay">
                 <div class="overlay-content">
-                  <h4>{{portfolio.service}}</h4>
+                  <h4 style="text-transform: uppercase;">{{portfolio.get_category_display}}</h4>
                 </div>
                 <div class="portfolio__single-section__search-icon">
                   <a href="#"><img src="{% static 'assets/images/search-icon.png' %}" alt=""></a>

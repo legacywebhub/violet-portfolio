@@ -4,16 +4,20 @@ from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from .models import *
 
+# General variables
+setting = WebsiteSetting.objects.last()
+
 # Create your views here.
 def home(request):
-    setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     skills = Skill.objects.all()
     services = Service.objects.all()
     team = Team.objects.all()
     contents = Content.objects.all()[:3]
     testimonials = Testimonial.objects.all().order_by('?')[:3]
+    portfolio_categories = PortfolioCategory.objects.all()
     portfolios = Portfolio.objects.all().order_by('?')[:6]
+
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
@@ -41,6 +45,7 @@ def home(request):
     'info':info,
     'contents':contents,
     'services':services,
+    'portfolio_categories' :portfolio_categories,
     'portfolios':portfolios,
     'setting':setting,
     'testimonials':testimonials,
@@ -51,7 +56,6 @@ def portfolio(request):
     p = Paginator(Portfolio.objects.all(), 12)
     page = request.GET.get('page')
     portfolios = p.get_page(page)
-    setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     context = {'portfolios':portfolios, 'setting':setting, 'info':info}
     return render(request, 'portfolio.html', context)
@@ -61,7 +65,6 @@ def contents(request):
     p = Paginator(Content.objects.all(), 12)
     page = request.GET.get('page')
     contents = p.get_page(page)
-    setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     context = {'contents':contents, 'setting':setting, 'info':info}
     return render(request, 'contents.html', context)
@@ -69,7 +72,6 @@ def contents(request):
 
 def content(request, pk):
     content = get_object_or_404(Content, id=pk)
-    setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     context = {
         'content': content,
@@ -80,7 +82,6 @@ def content(request, pk):
 
 
 def error404(request, exception):
-    setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     context = {
         'setting': setting,
@@ -90,7 +91,6 @@ def error404(request, exception):
 
 
 def serverError(request):
-    setting = WebsiteSetting.objects.last()
     info = Info.objects.last()
     context = {
         'setting': setting,
