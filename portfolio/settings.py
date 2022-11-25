@@ -36,6 +36,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=list)
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,7 +139,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR / 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR / 'staticfiles')
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # MEDIA SETTINGS
 
@@ -150,6 +150,12 @@ CLOUDINARY_STORAGE = {
     'API_KEY': config('CLOUDINARY_API_KEY'),
     'API_SECRET': config('CLOUDINARY_API_SECRET'),
     'INVALID_VIDEO_ERROR_MESSAGE': 'Please upload a valid video file.',
+}
+
+# Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "Violet Admin",
+    "site_header": "VIOLET ADMIN"
 }
 
 # Default primary key field type
