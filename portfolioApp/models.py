@@ -12,6 +12,9 @@ class WebsiteSetting(models.Model):
     header = models.CharField(max_length=50, blank=True, null=True)
     google_analytics = models.TextField(max_length=1500, blank=True, null=True) 
 
+    def __str__(self):
+        return self.title
+
     def save(self, *args, **kwargs):
         if not self.id and WebsiteSetting.objects.exists():
             raise ValueError('This model can only have one setting which can be edited')

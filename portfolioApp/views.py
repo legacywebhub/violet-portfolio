@@ -4,12 +4,11 @@ from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from .models import *
 
-# General variables
-setting = WebsiteSetting.objects.last()
 
 # Create your views here.
 def home(request):
     info = Info.objects.last()
+    setting = WebsiteSetting.objects.last()
     skills = Skill.objects.all()
     services = Service.objects.all()
     team = Team.objects.all()
@@ -57,6 +56,7 @@ def portfolio(request):
     page = request.GET.get('page')
     portfolios = p.get_page(page)
     info = Info.objects.last()
+    setting = WebsiteSetting.objects.last()
     context = {'portfolios':portfolios, 'setting':setting, 'info':info}
     return render(request, 'portfolio.html', context)
 
@@ -66,6 +66,7 @@ def contents(request):
     page = request.GET.get('page')
     contents = p.get_page(page)
     info = Info.objects.last()
+    setting = WebsiteSetting.objects.last()
     context = {'contents':contents, 'setting':setting, 'info':info}
     return render(request, 'contents.html', context)
 
@@ -73,6 +74,7 @@ def contents(request):
 def content(request, pk):
     content = get_object_or_404(Content, id=pk)
     info = Info.objects.last()
+    setting = WebsiteSetting.objects.last()
     context = {
         'content': content,
         'setting': setting,
@@ -83,6 +85,7 @@ def content(request, pk):
 
 def error404(request, exception):
     info = Info.objects.last()
+    setting = WebsiteSetting.objects.last()
     context = {
         'setting': setting,
         'info':info,
@@ -92,6 +95,7 @@ def error404(request, exception):
 
 def serverError(request):
     info = Info.objects.last()
+    setting = WebsiteSetting.objects.last()
     context = {
         'setting': setting,
         'info':info,

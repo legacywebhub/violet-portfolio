@@ -93,6 +93,10 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT')
+    },
+    'sqlite': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -156,6 +160,17 @@ CLOUDINARY_STORAGE = {
 JAZZMIN_SETTINGS = {
     "site_title": "Violet Admin",
     "site_header": "VIOLET ADMIN"
+    
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    #"site_logo": "books/img/logo.png",
+
+    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    #"login_logo": None,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",  # darkly/flatly
+    #"dark_mode_theme": "darkly",
 }
 
 # Default primary key field type
